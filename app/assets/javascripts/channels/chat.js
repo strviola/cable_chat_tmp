@@ -8,6 +8,7 @@ App.chat = App.cable.subscriptions.create("ChatChannel", {
   },
 
   received: function(data) {
+    return $('#chat-index').append('<li>' + data['message'] + '</li>');
   },
 
   post: function(message) {
@@ -17,6 +18,6 @@ App.chat = App.cable.subscriptions.create("ChatChannel", {
   if (event.keyCode === 13) {
     var chatForm = $('#chat-form');
     App.chat.post(chatForm.val());
-    return chatForm.val('');
+    chatForm.val('');
   }
 }));
