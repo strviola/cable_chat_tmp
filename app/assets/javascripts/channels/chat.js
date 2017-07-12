@@ -8,12 +8,10 @@ App.chat = App.cable.subscriptions.create("ChatChannel", {
   },
 
   received: function(data) {
-    // Called when there's incoming data on the websocket for this channel
   },
 
   post: function(message) {
-    window.alert(message);
-    return this.perform('post');
+    return this.perform('post', { message: message });
   }
 }, $(document).on('keypress', '[data-behavior~=chat_post]', function(event) {
   if (event.keyCode === 13) {
